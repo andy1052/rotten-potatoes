@@ -1,0 +1,20 @@
+<!-- views/reviews-edit.handlebars -->
+
+<!-- this is a strange one. Note the following:
+
+	#1: Put vs Post - Although our update action WILL be expecting a PUT HTTP action, HTML forms cannot take an action attribute of PUT. This makes NO SENSE, but a sensible workaround to HTML's shortcomings must be found. So, instead we'll add "?_method=PUT" to the end of the action, and then on the server we'll intercept this request and direct it toward our update action that takes a PUT HTTP request.
+
+	#2: "values="" we are using the "value" html attribute to pass in the values of the review we are trying to edit.
+
+	#3: - the "textarea" html tag does not have a "value" attribute, so it's contents must go between its open and close tags.
+-->
+
+<form method="POST" action="/reviews/{{review._id}}?_method=PUT" autocomplete="off">
+
+{{> reviews-form}}
+
+	<!-- button -->
+	<p>
+		<button type="submit">Save Review</button>
+	</p>
+</form>

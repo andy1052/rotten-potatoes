@@ -1,37 +1,8 @@
 <!-- views/reviews-new.handlebars -->
 
 <form method="post" action="/reviews" autocomplete="off">
-	<fieldset>
-		<legend>New Review</legend>
-		<!-- TITLE -->
-		<p>
-			<label for="title">Title</label><br>
-			<input type="text" name="title"/>
-		</p>
-		<!-- Mover Title -->
-		<p>
-			<label for="movieTitle">Movie Title</label><br>
-			<input type='text' name="movieTitle"/>
-		</p>
-		<!-- Description -->
-		<p>
-			<label for="description-text">Description</label><br>
-			<textarea id="description-text" name="description" rows="10"></textarea>
-		</p>
-		<!-- Rating -->
-		<p>
-			<label for="rating">Rating</label><br>
-			<select name="rating">
-				<option value=0>0</option>
-				<option value=1>1</option>
-				<option value=2>2</option>
-				<option value=3>3</option>
-				<option value=4>4</option>
-				<option value=5>5</option>
-			</select>
-		</p>
 
-	</fieldset>
+{{> reviews-form}}
 
 
 	<!-- Button -->
