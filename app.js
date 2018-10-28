@@ -22,7 +22,8 @@ mongoose.connect('mongodb://localhost/rotten-potatoes', {useNewUrlParser: true},
 const Review = mongoose.model('Review', {
 	title: String,
 	description: String,
-	movieTitle: String
+	movieTitle: String,
+	rating: Number
 });
 
 
@@ -64,7 +65,18 @@ app.post('/reviews', (req, res) => {
 	//	Save Review to database:
 	Review.create(req.body).then((review) => {
 		console.log(review);
-		res.redirect('/');
+		res.redirect(`/reviews/${review._id}`); // redirect to reviews/:id
+	}).catch((err) => {
+		console.log(err.message);
+	});
+});
+
+//	Show a specific review when clicked on:
+//	This is a query string search, so body parser makes the "req.params.id" parameter to use.
+app.get('/reviews/:id', (req, res) => {
+	//	Find specified document by _id:
+	Review.findById(req.params.id).then((review) => {
+		res.render('reviews-show', { review: review})
 	}).catch((err) => {
 		console.log(err.message);
 	});
