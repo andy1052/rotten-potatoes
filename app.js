@@ -23,8 +23,26 @@ app.set('view engine', 'handlebars');
 
 //	Make inital route:
 app.get('/', (req, res) => {
-	res.render('home', { msg: 'Handlebars are cool!' });
+	res.render('reviews-index', { reviews: reviews });
 });
+
+
+/* A mock array of projects*/
+let reviews = [
+{ title: "Great Review", movieTitle: "Batman II"},
+{ title: "Awesome Review", movieTitle: "Titanic"}
+]
+
+/* Index Route Mock */
+app.get('/reviews', (req, res) => {
+
+});
+
+
+
+
+
+
 
 
 //	Listen on port:
