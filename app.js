@@ -107,12 +107,15 @@ app.put('/reviews/:id', (req, res) => {
 });
 
 
-// /* A mock array of projects*/
-// let reviews = [
-// { title: "Great Review", movieTitle: "Batman II"},
-// { title: "Awesome Review", movieTitle: "Titanic"},
-// { title: "Fuck Yeah!", movieTitle: "Fear and loathing in Las Vegas"}
-// ];
+//	Delete Route:
+app.delete('/reviews/:id', (req, res) => {
+	console.log("Deleted review");
+	Review.findOneAndDelete(req.params.id).then(review => {
+		res.redirect('/');
+	}).catch(err => {
+		console.log(err.message);
+	});
+});
 
 
 
