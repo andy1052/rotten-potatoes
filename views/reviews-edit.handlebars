@@ -9,13 +9,20 @@
 	#3: - the "textarea" html tag does not have a "value" attribute, so it's contents must go between its open and close tags.
 -->
 
+<div class="row">
+	<div class="col-sm-6 col-sm-offset-3">
+	<legend>Edit Review</legend>
 <form method="POST" action="/reviews/{{review._id}}?_method=PUT" autocomplete="off">
 
 {{> reviews-form}}
 
 	<!-- button -->
+	<div class="form-group">
 	<p>
 		<button type="submit">Save Review</button>
 		<button type="submit" action="/">Cancel</button>
 	</p>
+</div>
 </form>
+</div>
+</div>
