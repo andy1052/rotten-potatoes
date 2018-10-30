@@ -36,8 +36,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 
 
-//	Connect Routes from reviews.js, pass the app and model Review into the file as well:
+//	Connect Routes from reviews.js, pass the app variable into the file as well:
 const reviews = require('./controllers/reviews')(app);
+
+//	Connect Routes from comments.js, pass the app variable into the file as well:
+const comments = require('./controllers/comments')(app);
 
 
 

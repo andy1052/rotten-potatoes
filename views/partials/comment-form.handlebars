@@ -1,6 +1,8 @@
 <!-- views/partials/comment-form.handlebars -->
 
-<form autocomplete="off">
+<form action="/reviews/comments" method="POST" autocomplete="off">
+	<!-- hidden field used to associate the review's id to the comment -->
+	<input type="hidden" value="{{review._id}}" name="reviewId">
 	<fieldset>
 		<legend>Add A Comment</legend>
 
