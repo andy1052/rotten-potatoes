@@ -8,6 +8,8 @@
 
 //	Dependencies
 const Review = require('../models/review');
+const Comment = require('../models/comment');
+
 
 
 //	Make inital route, (homepage):
@@ -49,7 +51,11 @@ app.post('/reviews', (req, res) => {
 app.get('/reviews/:id', (req, res) => {
 	//	Find specified document by _id:
 	Review.findById(req.params.id).then((review) => {
-		res.render('reviews-show', { review: review })
+		//	Then Fetch the review's comments:
+		Comment.find({ reviewId: req.params.id }).then((comments) => {
+		//	Respond with the template with both values:
+		res.render('reviews-show', { review: review, comments: comments})			
+		})
 	}).catch((err) => {
 		console.log(err.message);
 	});
