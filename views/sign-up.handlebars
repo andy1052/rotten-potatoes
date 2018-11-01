@@ -1,0 +1,22 @@
+<!-- views/user-sign-up.handlebars -->
+
+<div class="row">
+	<div class="col-sm-6 col-sm-offset-3">
+		<legend>Sign Up!</legend>
+<form method="post" action="/sign-up" autocomplete="off">
+	<fieldset>
+		<!-- Username -->
+		<div class="form-group">
+			<label for="username">Username</label><br>
+			<input id="username" type="text" name="username" value="{{user.title}}"/>
+		</div>
+
+		<!-- Password -->
+		<div class="form-group">
+			<label for="password">Password</label><br>
+			<input id="password" type="password" name="password" value="{{user.movieTitle}}"/>
+		</div>
+	</fieldset>
+</form>
+</div>
+</div>

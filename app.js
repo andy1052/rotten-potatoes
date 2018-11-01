@@ -42,6 +42,8 @@ const reviews = require('./controllers/reviews')(app);
 //	Connect Routes from comments.js, pass the app variable into the file as well:
 const comments = require('./controllers/comments')(app);
 
+//	Connect Routes from Auths.js, pass the app variable into the file as well:
+const auths = require('./controllers/auths')(app);
 
 
 //	Listen on port:
