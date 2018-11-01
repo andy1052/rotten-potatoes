@@ -9,6 +9,7 @@
 
 //	Dependencies:
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 const Schema = mongoose.Schema;
 
 
@@ -29,9 +30,27 @@ User.pre("save", function(next) {
 	if (!this.createdAt) {
 		this.createdAt = now;
 	}
-	next();
+
+	//	Encrypt password:
+	const user = this;
+	if (!user.isModified("password")) {
+		return next();
+	}
+	bcrypt.genSalt(10, (err, salt) => {
+		bcrypt.hash(user.password, salt, (err, hash) => {
+			user.password = hash;
+			next();
+		});
+	});
 });
 
+
+//	Need to use function to enable this.password to work:
+User.methods.comparePassword = function(password, done) {
+	bcrypt.compare(password, this.password, (err, isMatch) => {
+		done(err, isMatch);
+	});
+};
 
 //	Export module:
 module.exports = mongoose.model("User", User);
