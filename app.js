@@ -13,6 +13,8 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 const dotenv = require('dotenv').config();
+const cookieParser = require('cookie-parser');
+const jwt = require('jsonwebtoken');
 
 //	Initialize server:
 const app = express();
@@ -29,8 +31,8 @@ mongoose.connect('mongodb://localhost/rotten-potatoes', {useNewUrlParser: true},
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
-
-
+//	This middleware is for cookies, place AFTER you initialize express:
+app.use(cookieParser());
 //	This line MUST appear AFTER app = express(), but BEFORE your routes!:
 app.use(bodyParser.urlencoded({ extended: true }));
 //	This middleware also Must appear After app = express(), but BEFORE your routes!:

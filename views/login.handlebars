@@ -1,0 +1,28 @@
+<!-- views/login.handelbars -->
+
+<div class="row">
+	<div class="col-sm-6 col-sm-offset-3">
+		<legend>Sign Up!</legend>
+<form method="POST" action="/login" autocomplete="off">
+	<fieldset>
+		<!-- Username -->
+		<div class="form-group">
+			<label for="username">Username</label><br>
+			<input id="username" type="text" name="username" value="{{user.title}}"/>
+		</div>
+
+		<!-- Password -->
+		<div class="form-group">
+			<label for="password">Password</label><br>
+			<input id="password" type="password" name="password" value="{{user.movieTitle}}"/>
+		</div>
+
+		<!-- Button -->
+		<div class="form-group">
+	<p>
+		<button type="submit">Login</button>
+	</p>
+	</fieldset>
+</form>
+</div>
+</div>

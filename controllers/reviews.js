@@ -16,7 +16,7 @@ const Comment = require('../models/comment');
 module.exports = function(app) {
 
 app.get('/', (req, res) => {
-	console.log(req.body);
+	console.log("cookie ", req.cookies);
 	//	Get reviews from database:
 	Review.find()
 		.then(reviews => {
