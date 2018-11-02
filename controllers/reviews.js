@@ -15,12 +15,13 @@ const Comment = require('../models/comment');
 //	Make inital route, (homepage):
 module.exports = function(app) {
 
+
 app.get('/', (req, res) => {
-	console.log("cookie ", req.cookies);
+	let currentUser = req.user;
 	//	Get reviews from database:
 	Review.find()
 		.then(reviews => {
-			res.render('reviews-index', { reviews: reviews });
+			res.render('reviews-index', { reviews: reviews, currentUser });
 		})
 		.catch(err => {
 			console.log(err);
@@ -30,7 +31,8 @@ app.get('/', (req, res) => {
 
 //	New Reviews Route:
 app.get('/reviews/new', (req, res) => {
-	res.render('reviews-new', {});
+	let currentUser = req.user;
+	res.render('reviews-new', {currentUser});
 });
 
 
@@ -49,12 +51,13 @@ app.post('/reviews', (req, res) => {
 //	Show a specific review when clicked on:
 //	This is a query string search, so body parser makes the "req.params.id" parameter to use.
 app.get('/reviews/:id', (req, res) => {
+	let currentUser = req.user;
 	//	Find specified document by _id:
 	Review.findById(req.params.id).then((review) => {
 		//	Then Fetch the review's comments:
 		Comment.find({ reviewId: req.params.id }).then((comments) => {
 		//	Respond with the template with both values:
-		res.render('reviews-show', { review: review, comments: comments})			
+		res.render('reviews-show', { review: review, comments: comments, currentUser});			
 		})
 	}).catch((err) => {
 		console.log(err.message);
@@ -64,8 +67,9 @@ app.get('/reviews/:id', (req, res) => {
 
 //	Edit review route:
 app.get('/reviews/:id/edit', (req, res) => {
+	let currentUser = req.user;
 	Review.findById(req.params.id).then((review) => {
-		res.render('reviews-edit', { review: review })
+		res.render('reviews-edit', { review: review, currentUser });
 	}).catch((err) => {
 		console.log(err.message);
 	});

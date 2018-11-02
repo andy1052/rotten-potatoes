@@ -26,6 +26,20 @@ mongoose.connect('mongodb://localhost/rotten-potatoes', {useNewUrlParser: true},
 });
 
 
+//	CheckAuth function:
+let checkAuth = function(req, res, next) {
+	console.log("Checking authentication");
+	if (typeof req.cookies.nToken === "undefined" || req.cookies.nToken === null) {
+		req.user = null;
+	} else {
+		let token = req.cookies.nToken;
+		let decodedToken = jwt.decode(token, {complete: true}) || {};
+		req.user = decodedToken.payload;
+	}
+	next();
+};
+
+
 
 //	Set Template engine to handlebars:
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
@@ -37,6 +51,8 @@ app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 //	This middleware also Must appear After app = express(), but BEFORE your routes!:
 app.use(methodOverride('_method'));
+//	This is custom middleware that checks if "nToken" exists and is valid:
+app.use(checkAuth);
 
 
 //	Connect Routes from reviews.js, pass the app variable into the file as well:
