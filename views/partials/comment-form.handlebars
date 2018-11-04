@@ -3,6 +3,7 @@
 <form action="/reviews/comments" method="POST" autocomplete="off">
 	<!-- hidden field used to associate the review's id to the comment -->
 	<input type="hidden" value="{{review._id}}" name="reviewId">
+	<input type="hidden" value="{{currentUser._id}}" name="author">
 	<fieldset>
 		<legend>Add A Comment</legend>
 
